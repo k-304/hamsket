@@ -686,7 +686,7 @@ Ext.define('Hamsket.store.ServicesList', {
 			,description: 'Self-hosted web IRC client.'
 			,url: '___'
 			,type: 'messaging'
-			,js_unread: `let checkUnread=()=>{const a=document.getElementsByClassName("badge highlight");let b=0;for(let i of a){const iTrim=parseInt(i.textContent.trim());iTrim%1==0&&(b+=iTrim)}hamsket.updateBadge(b)};setInterval(checkUnread,1e3);`
+			,js_unread: `let checkUnread=()=>{const a=document.getElementsByClassName("badge");let b=0;for(let i of a){const iTrim=parseInt(i.textContent.trim());iTrim%1==0&&(b+=iTrim)}hamsket.updateBadge(b)};setInterval(checkUnread,1e3);`
 		},
 		{
 			 id: 'linkedin'
