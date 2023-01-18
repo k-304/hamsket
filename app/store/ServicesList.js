@@ -28,7 +28,25 @@ Ext.define('Hamsket.store.ServicesList', {
 			,description: locale['services[0]']
 			,url: 'https://web.whatsapp.com/'
 			,type: 'messaging'
-			,js_unread: `let checkUnread=()=>{const elements=document.querySelectorAll("#pane-side ._23LrM");let count=0;for(const i of elements){const gp=i.parentNode.parentNode;0===gp.querySelectorAll('#pane-side *[data-icon="muted"]').length&&count++}hamsket.updateBadge(count)};setInterval(checkUnread,1e3);let unregister_queue=[];navigator.serviceWorker.getRegistrations().then(registrations=>{for(const registration of registrations)unregister_queue.push(registration.unregister());return unregister_queue}).then(queue=>{}).catch(err=>{});`
+			,js_unread: `let checkUnread=()=>{
+	const elements=document.querySelectorAll("._8nE1Y > ._2KKXC > .Dvjym > span > ._1pJ9J > .l7jjieqr");
+	let count=0;
+	let b=0;
+	for(const i of elements){
+		const gp=i.parentNode.parentNode;
+		0===gp.querySelectorAll('#pane-side *[data-icon="muted"]').length&&count++
+		const iTrim=parseInt(i.textContent.trim());
+		iTrim%1==0&&(b+=iTrim)
+	}
+	hamsket.updateBadge(b);
+	console.log(b);
+};
+setInterval(checkUnread,1e3);
+
+let unregister_queue=[];
+navigator.serviceWorker.getRegistrations().then(registrations=>{
+	for(const registration of registrations)unregister_queue.push(registration.unregister());
+return unregister_queue}).then(queue=>{}).catch(err=>{});`
 		},
 		{
 			 id: 'slack'
